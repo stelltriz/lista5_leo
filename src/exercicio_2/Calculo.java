@@ -1,30 +1,24 @@
 package exercicio_2;
-import java.util.Scanner;
+
 public class Calculo {
-
-    Scanner leia = new Scanner(System.in);
-    EntradaSaida entradaSaida = new EntradaSaida();
-
-    public double descontoINSS(){
-        return 0.2 * entradaSaida.saida();
+    public static double calcularINSS(double salarioBruto) {
+        return salarioBruto * 0.20;
     }
 
-    public double descontoIRPF(){
-        return 0.1 * entradaSaida.salarioBruto;
+    public static double calcularIRPF(double salarioBruto) {
+        return salarioBruto * 0.10;
     }
 
-    public double descontoPlano(){
-        return 0.05 * entradaSaida.salarioBruto;
+    public static double calcularPlanoSaude(double salarioBruto) {
+        return salarioBruto * 0.05;
     }
 
-    public double acrescimoHoras(){
-        System.out.println("Insira quantas horas extras você trabalhou:");
-        double horasExtras = leia.nextDouble();
-        double salarioHora = entradaSaida.salarioBruto / 160;
-        return (salarioHora * 0.5) * horasExtras;
+    public static double calcularHorasExtras(double salarioBruto, double horasExtras) {
+        double valorHora = salarioBruto / 160;
+        return horasExtras * valorHora * 1.5;
     }
 
-    public double salarioLiquido(){
-        return entradaSaida.salarioBruto;
+    public static double calcularSalarioLiquido(double salarioBruto, double descontoINSS, double descontoIRPF, double descontoPlanoSaude, double acrescimoHorasExtras) {
+        return salarioBruto - descontoINSS - descontoIRPF - descontoPlanoSaude + acrescimoHorasExtras;
     }
 }

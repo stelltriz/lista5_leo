@@ -1,19 +1,14 @@
 package exercicio_2;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        Scanner leia = new Scanner(System.in);
-
-        EntradaSaida entradaSaida = new EntradaSaida(0);
-        Validacao validacao = new Validacao();
-        Calculo calculo = new Calculo();
-
-        System.out.println("I");
-        entradaSaida.entrada();
-        System.out.println(entradaSaida.saida());
-        System.out.println(calculo.salarioLiquido());
-
+        double salarioBruto = EntradaSaida.receberSalario();
+        double horasExtras = EntradaSaida.receberHorasExtras();
+        double descontoINSS = Calculo.calcularINSS(salarioBruto);
+        double descontoIRPF = Calculo.calcularIRPF(salarioBruto);
+        double descontoPlanoSaude = Calculo.calcularPlanoSaude(salarioBruto);
+        double acrescimoHorasExtras = Calculo.calcularHorasExtras(salarioBruto, horasExtras);
+        double salarioLiquido = Calculo.calcularSalarioLiquido(salarioBruto, descontoINSS, descontoIRPF, descontoPlanoSaude, acrescimoHorasExtras);
+        EntradaSaida.mostrarFolhaPagamento(salarioBruto, descontoINSS, descontoIRPF, descontoPlanoSaude, acrescimoHorasExtras, salarioLiquido);
     }
 }
